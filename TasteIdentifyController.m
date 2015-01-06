@@ -11,8 +11,8 @@
 #import "EatsChoice.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "PreferenceSearchViewController.h"
-#define locuName   @"mjhowell@live.unc.edu"
-#define locuKey @"348b2f6cc9b7c265d94ed414fc4c689e812a73b7"
+#define locuName   @"*************"
+#define locuKey @"**********************"
 
 @interface TasteIdentifyController (){
     UILabel *coordinates;
