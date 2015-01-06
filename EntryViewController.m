@@ -8,8 +8,8 @@
 
 #import "ViewController.h"
 #import "TasteIdentifyController.h"
-#define kStrikeIronUserID   @"mjhowell@live.unc.edu"
-#define kStrikeIronPassword @"7m5jmj"
+#define kStrikeIronUserID   @"**********.edu"
+#define kStrikeIronPassword @"***********"
 
 @interface ViewController ()
 {

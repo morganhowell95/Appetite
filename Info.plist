@@ -18,7 +18,7 @@
 	<key>CFBundleExecutable</key>
 	<string>Eats</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Guru.Eats</string>
+	<string>com.Guru.********</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -32,7 +32,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>304272379773355</string>
+	<string>********************</string>
 	<key>FacebookDisplayName</key>
 	<string>Eats</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -69,7 +69,7 @@
 		<dict>
 			<key>URL Schemes</key>
 			<array>
-				<string>fb304272379773355</string>
+				<string>***************</string>
 			</array>
 		</dict>
 	</array>
