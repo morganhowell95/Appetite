@@ -7,17 +7,29 @@
 //
 
 #import "AppDelegate.h"
+#import <GooglePlus/GooglePlus.h>
 
 @interface AppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate{
+    UIStoryboard* _initalStoryboard;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    _initalStoryboard = self.window.rootViewController.storyboard;
     return YES;
+}
+
+- (BOOL)application: (UIApplication *)application
+            openURL: (NSURL *)url
+  sourceApplication: (NSString *)sourceApplication
+         annotation: (id)annotation {
+    return [GPPURLHandler handleURL:url
+                  sourceApplication:sourceApplication
+                         annotation:annotation];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -43,6 +55,18 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+- (void)resetWindowToInitialView
+{
+    for (UIView* view in self.window.subviews)
+    {
+        [view removeFromSuperview];
+    }
+    
+    UIViewController* initialScene = [_initalStoryboard instantiateInitialViewController];
+    self.window.rootViewController = initialScene;
+}
+
 
 #pragma mark - Core Data stack
 
