@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *foodSwingDescriptions;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *progress;
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationBar;
+@property (strong, nonatomic) IBOutlet UILabel *food_choice;
 
 //user and user selection attributes
 @property (strong, nonatomic) UserProfile *user;

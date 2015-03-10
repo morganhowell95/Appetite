@@ -12,6 +12,7 @@
 #import "AppetiteChoiceViewController.h"
 #import "AppDelegate.h"
 #import "SettingsViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface SidebarViewController ()
 
@@ -69,8 +70,19 @@
         }
         cell.backgroundView =  [[UIImageView alloc] initWithImage:[ [UIImage imageNamed:@"bitmap_profile_tile"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0] ];
         
+        //set facebook profile picture if available
+        if(self.user_prof.FBpicture){
+            cell.FBuserProfilePicture.hidden=NO;
+            cell.FBuserProfilePicture.profileID = self.user_prof.FBpicture;
+        }
+        
+        
+        //set user name and email if available
         if(self.user_prof.email){
             cell.userProfileIdentifier.text =self.user_prof.email;
+        }
+        else if(self.user_prof.FBname){
+            cell.userProfileIdentifier.text=self.user_prof.FBname;
         }
         else {
             cell.userProfileIdentifier.text = @"Eat Smart, Buddy!";
@@ -100,6 +112,7 @@
             break;
         case 3:
             CellIdentifier = @"signOut";
+            [FBSession.activeSession closeAndClearTokenInformation];
             break;
         default:
             break;

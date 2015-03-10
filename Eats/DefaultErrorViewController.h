@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserProfile.h"
 
 @interface DefaultErrorViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIButton *retryButton;
+@property (strong, nonatomic) UserProfile *user;
 
 @end

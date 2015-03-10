@@ -31,13 +31,16 @@
     
     
     //capturing information about the current time context
+    NSTimeZone *preferredTimeZone = [NSTimeZone localTimeZone];
     NSDate *currentTime = [NSDate date];
     NSDateFormatter *myFormatter = [[NSDateFormatter alloc] init];
     NSMutableString *display = [[NSMutableString alloc] init];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSCalendarUnitDay | NSCalendarUnitHour) fromDate:currentTime];
     int hrs = (int)[components hour];
+    [myFormatter setTimeZone:preferredTimeZone];
     [myFormatter setDateFormat:@"c"]; // day number (format: 7 for saturday)
+    
     NSString *dayOfWeek = [myFormatter stringFromDate:currentTime];
     NSInteger numberOfDay = [dayOfWeek integerValue];
 
@@ -49,8 +52,10 @@
             @"Morning", @"Afternoon", @"Afternoon",
             @"Evening", @"Night", nil];
     
+    NSLog(@"%d",hrs);
+    
     //construction and identification of time context along with mood ids
-    [display appendString:week[numberOfDay-2]];
+    [display appendString:week[numberOfDay-1]];
     self.timeContextLabel.text = [self chooseTimePeriod:display hours:hrs];
     [self moodIDGeneration];
     self.shuffle.layer.cornerRadius=10;
@@ -73,7 +78,6 @@
                                      multiplier:1.0
                                       constant:0];
     }
-    
     //toggling the side drawer
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
@@ -95,8 +99,8 @@
         
         //POST content (being sent)
         NSString *moodGen_url = [NSString stringWithFormat:@"%@tags/mood/",APP_URL];
-        
-        if(!self.user.password && !self.user.email)
+      
+        if((self.user.password != nil) && (self.user.email != nil))
             self.fieldPost = @{@"email" : self.user.email, @"password" : self.user.password, @"count" : @6};
         else{
             self.fieldPost = @{@"count": @6};
@@ -114,7 +118,7 @@
                   success:^(AFHTTPRequestOperation *operation, id responseObject)
              {
                  //uncomment below line to see JSON server responds with
-                 //NSLog(@"JSON: %@", responseObject);
+                  NSLog(@"JSON: %@", responseObject);
                  
                  int index = 0; //update buttons in sequential order
                  for(NSDictionary *dic in responseObject)
@@ -154,11 +158,9 @@
     NSURL *image_url = [NSURL URLWithString:imagecomp_url];
     NSData *data = [NSData dataWithContentsOfURL:image_url];
     UIImage *image = [UIImage imageWithData: data];
-   // [[self.moodImages objectAtIndex:index] setContentMode:UIViewContentModeScaleAspectFit];
     
     //setting the image to the respective option
     [[self.moodImages objectAtIndex:index] setImage:image];
-    //[[self.moodImages objectAtIndex:index] setIm]
 }
 
 //chooses the appropriate time setting based on current time
@@ -195,10 +197,14 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(CustomButton *)sender
 {
-    FoodSwingsViewController *dest = (FoodSwingsViewController *) segue.destinationViewController;
-    self.user.current_mood = sender.titleLabel.text;
-    dest.user = self.user;
-    dest.chosen_mood = sender;
+   
+    if([segue.destinationViewController isKindOfClass:[FoodSwingsViewController class] ]){
+        FoodSwingsViewController *dest = (FoodSwingsViewController *) segue.destinationViewController;
+        self.user.current_mood = sender.titleLabel.text;
+        dest.user = self.user;
+         NSLog(@"MOOOOD CHOSEEEEN: %d",sender.moodID);
+        dest.chosen_mood = sender;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

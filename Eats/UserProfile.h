@@ -15,6 +15,8 @@
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *personal_id;
 @property (strong, nonatomic) NSString *current_mood;
+@property (strong, nonatomic) NSString *FBname;
+@property (strong, nonatomic) NSString *FBpicture;
 @property int searchRadius;
 
 @end

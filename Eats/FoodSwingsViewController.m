@@ -21,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self loadFoodSwing];
+    self.food_choice.text = self.chosen_mood.titleLabel.text;
 
     
     //place border around buttons
@@ -49,7 +50,9 @@
         //POST content (being sent)
         NSString *moodSwingGen_url = [NSString stringWithFormat:@"%@tags/mood_swing/",APP_URL];
         
-        if(!self.user.password && !self.user.email){
+        NSLog(@"MOOOD ID: %d", self.chosen_mood.moodID);
+        
+        if((self.user.password!=nil) && (self.user.email!=nil)){
             self.fieldPost = @{@"email" : self.user.email, @"password" : self.user.password, @"mood" : @(self.chosen_mood.moodID)};
         }
         else{
@@ -71,7 +74,7 @@
               success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              //uncomment to print the JSON that the server responds with
-            // NSLog(@"JSON: %@", responseObject);
+             NSLog(@"JSON: %@", responseObject);
             
             int mood_count=0;
              for(NSDictionary *dict in responseObject) {

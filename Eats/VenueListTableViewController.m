@@ -85,7 +85,7 @@
         //POST content (being sent)
         NSString *moodSwingGen_url = [NSString stringWithFormat:@"%@tags/venue_search/",APP_URL];
         
-        if(!self.user.password && !self.user.email){
+        if((self.user.password!=nil) && (self.user.email!=nil)){
             self.fieldPost = @{@"email" : self.user.email, @"password" : self.user.password, @"mood_swing" : @(self.foodSwingChoice), @"latitude" : @(self.latitude), @"longitude": @(self.longitude), @"radius": @(self.user.searchRadius)};
         }
         else{

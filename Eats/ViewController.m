@@ -43,16 +43,16 @@
     
     //GooglePlus SignIn Initialization
     //self.googlePlusSignIn.frame = CGRectMake(231, 271, 45, 45);
-    GPPSignIn *googlePlus = [GPPSignIn sharedInstance];
-    googlePlus.shouldFetchGooglePlusUser = YES;
-    googlePlus.shouldFetchGoogleUserEmail = YES;  // Uncomment to get the user's email
+    //GPPSignIn *googlePlus = [GPPSignIn sharedInstance];
+    //googlePlus.shouldFetchGooglePlusUser = YES;
+    //googlePlus.shouldFetchGoogleUserEmail = YES;  // Uncomment to get the user's email
     
     // You previously set kClientId in the "Initialize the Google+ client" step
-    googlePlus.clientID = kGooglePlus;
+    //googlePlus.clientID = kGooglePlus;
     
     // Uncomment one of these two statements for the scope you chose in the previous step
-    googlePlus.scopes = @[ kGTLAuthScopePlusLogin ];  // "https://www.googleapis.com/auth/plus.login" scope
-    googlePlus.scopes = @[ @"profile", @"email"];            // "profile" scope
+    //googlePlus.scopes = @[ kGTLAuthScopePlusLogin ];  // "https://www.googleapis.com/auth/plus.login" scope
+    //googlePlus.scopes = @[ @"profile", @"email"];            // "profile" scope
     
     //delegates connected and submission setup
     self.appetitePasswordSubmission.secureTextEntry=YES;
@@ -63,7 +63,7 @@
     self.appetitePasswordSubmission.delegate=self;
     self.appetiteEmailSubmission.delegate=self;
     self.appetiteNameSubmission.delegate=self;
-    googlePlus.delegate = self;
+   // googlePlus.delegate = self;
     loginView.delegate = self;
    // self.loginView.frame = CGRectMake(121, 271, 45, 45);
     
@@ -299,11 +299,13 @@
 - (void) loginViewFetchedUserInfo: (FBLoginView *)loginView user: (id<FBGraphUser>)user
 {
     NSLog(@"loginViewFetchedUserInfo");
-    _name = [user name];
-    _profileID = user.objectID;
+    self.user.FBname = [user name];
+    self.user.FBpicture = user.objectID;
     
     //Comment the line below out to deactivate Facebook login
     //[self performSegueWithIdentifier:@"Login" sender:self];
+    [self performSegueWithIdentifier:@"login_verified" sender:nil];
+
 }
 
 // Handle possible errors that can occur during login
