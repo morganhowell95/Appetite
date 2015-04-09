@@ -1822,6 +1822,8 @@ NSString * const SWSegueRightIdentifier = @"sw_right";
    // NSLog(@"IM BEING CALLEDrvc : %@", classNamervc);
    // NSLog(@"IM BEING CALLEDDVC : %@", classNamedvc);
     
+        NSLog(@"Search Radius: %d !!!!!!!!!!!!!!!!!" , rvc.user.searchRadius);
+    
     if([dvc isKindOfClass:[UINavigationController class]] ){
         UINavigationController *navigationController = (UINavigationController * ) dvc;
         UIViewController *dest = navigationController.topViewController;
@@ -1854,7 +1856,6 @@ NSString * const SWSegueRightIdentifier = @"sw_right";
     if ( operation != SWRevealControllerOperationNone )
         [rvc _performTransitionOperation:operation withViewController:dvc animated:NO];
     
-    NSLog(@"PERFORMING SEGUE");
 }
 
 @end

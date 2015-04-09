@@ -52,6 +52,7 @@
     // Set the label text to the value of the slider as it changes
     self.radiusMiles.text = [NSString stringWithFormat:@"%d miles", (int) self.radiusSlider.value];
     self.user.searchRadius = (int) (self.radiusSlider.value/0.00062137f);
+    self.revealViewController.user = self.user;
     
 }
 

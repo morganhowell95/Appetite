@@ -200,7 +200,6 @@
             break;
         }
         default:
-            NSLog(@"testtt");
             break;
     }
 }
@@ -216,7 +215,6 @@
         UINavigationController *navController = segue.destinationViewController;
         AppetiteChoiceViewController *home = [navController childViewControllers].firstObject;
         home.user = self.user_prof;
-        NSLog(@"it worked!!!!!");
     }
     if ([segue.identifier isEqualToString:@"settings"]) {
         UINavigationController *navController = segue.destinationViewController;

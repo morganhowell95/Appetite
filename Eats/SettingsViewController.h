@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UserProfile.h"
+#import "SWRevealViewController.h"
 
 @interface SettingsViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UISlider *radiusSlider;
